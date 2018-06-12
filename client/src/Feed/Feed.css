@@ -1,0 +1,24 @@
+.Feed{
+  max-width: 800px;
+  margin:0 auto;
+}
+
+.Feed-header{
+  border-top: 5px solid #185380;
+  border-bottom: 5px solid #185380;
+  padding: 10px 0;
+  margin: 20px 0;
+  background: #fcfcfc;
+}
+
+.img-placeholder{
+  background: #ccc;
+  min-height: 200px;
+}
+.Feed-comment{
+  text-align: left;
+}
+.Feed-comment input{
+  margin: 10px;
+  max-width: 85%;
+}
