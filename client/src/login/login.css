@@ -1,0 +1,14 @@
+.Login{
+  max-width: 500px;
+  margin:100px auto 0;
+}
+
+.Login-header{
+  margin: 20px 0 50px;
+}
+
+.login-wrapper{
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}

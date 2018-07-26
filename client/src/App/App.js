@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Feed from '../Feed/Feed.js';
+import Feed from '../Feed/Feed';
+import Login from '../login/login';
 
 class App extends Component {
-
       constructor (props) {
         super(props);
         this.state = {
         name: '',
-        dept : ""
-
+        dept : "",
+        loggedIn:false
       }
     }
 
@@ -23,16 +23,14 @@ class App extends Component {
     }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-        <span className="User-name"> {this.state.name}  </span>
-        <span className="User-name dept-name"> {this.state.project}  </span>
-        </header>
-        <Feed/>
-      </div>
-    );
-  }
+      const logIn = this.state.loggedIn;
+      return (
+        <div className="App">
+            <Feed LogIn={logIn}/>
+            <Login LogIn={logIn} />
+        </div>
+      );
+    }
 }
 
 export default App;

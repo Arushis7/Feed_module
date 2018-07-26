@@ -37,3 +37,10 @@ input {
 
 .btn-default{
 background:#185380;}
+
+.none{
+  display: none;
+}
+.block{
+  display: block;
+}

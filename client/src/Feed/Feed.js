@@ -5,6 +5,7 @@ import './Feed.css';
 class Feed extends Component {
   constructor(props){
         super(props);
+        console.log(props);
         this.state = {feed :"",timeStamp:"",value:""};
 
         this.onChange = (e) => {
@@ -13,34 +14,40 @@ class Feed extends Component {
         }
     }
 
-
-
     componentDidMount() {
       axios.get(`/feed`)
         .then(res => {
           const response = res.data;
+          console.log('Feed>>>>>>>>>',response);
           this.setState({feed:response.feed,timeStamp:response.timeStamp})
         })
     }
 
-
   render() {
-    return (
-      <div className="Feed">
-        <header className="Feed-header">
-        {this.state.feed}       {this.state.timeStamp}
+    if(this.props.LogIn){
+      return (
+        <div className="Feed">
+        <header className="App-header">
+        <span className="User-name"> {this.state.name}  </span>
+        <span className="User-name dept-name"> {this.state.project}  </span>
         </header>
 
-        <section className="Feed-description">
-          <div className="img-placeholder"> </div>
-        </section>
+          <header className="Feed-header">
+          {this.state.feed}  {this.state.timeStamp}
+          </header>
 
-        <div className="Feed-comment"> <input type="text" placeholder="Enter Your Comment" value={this.state.value} onChange={this.onChange.bind(this)} />
+          <section className="Feed-description">
+            <div className="img-placeholder"> </div>
+          </section>
+
+          <div className="Feed-comment"> <input type="text" placeholder="Enter Your Comment" value={this.state.value} onChange={this.onChange.bind(this)} />
+          </div>
+
         </div>
+      );
+    }
+    else return false;
 
-      </div>
-      
-    );
   }
 }
 
