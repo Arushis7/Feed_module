@@ -14,6 +14,12 @@ class App extends Component {
       }
     }
 
+    onLoginSucess = (val) =>{
+       var newVal = someBusinessLogic(val);
+      console.log(newVal)
+      //this.setState({val: newVal});
+    }
+
     componentDidMount() {
     axios.get(`/me`)
       .then(res => {
@@ -27,7 +33,7 @@ class App extends Component {
       return (
         <div className="App">
             <Feed LogIn={logIn}/>
-            <Login LogIn={logIn} />
+            <Login onLoginSucess={this.onLoginSucess} LogIn={logIn} />
         </div>
       );
     }

@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/user', function(req, res){
-//  console.log(client.db('Feed_Module'));
 res.send({emp: 1632, org: 'tothenew'});
 });
 
@@ -27,10 +26,27 @@ res.send({name: "Arushi Shukla", project: "GarbleCloud"});
 app.get('/feed', function(req, res){
   var FeedData = {timeStamp: new Date(), feed: "This is demo feed from express server"};
   res.send(FeedData);
-// console.log('Feed Data :::::',FeedData);
 });
 
 app.post('/userDetails', function(req, res){
+var myData = req.body;
+console.log('???????????????', myData);
+
+MongoClient.connect("mongodb://localhost:27017", function (err, client) {
+  var db = client.db('userData');
+    db.collection('userData').findOne(myData, function (err, result) {
+        console.log(err,result);
+          if(err == null && result==null)
+            res.send('Error');
+         else{
+           console.log('found login data:::::::::::',myData);
+           res.send('Success');
+         }
+     });
+});
+});
+
+app.post('/createUser', function(req, res){
 var myData = req.body;
 console.log('???????????????', myData);
 

@@ -44,3 +44,8 @@ background:#185380;}
 .block{
   display: block;
 }
+
+.error{
+  color:#881212;
+  font-size: 14px;
+}

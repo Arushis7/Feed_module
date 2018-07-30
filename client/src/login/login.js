@@ -8,7 +8,13 @@ class Login extends Component {
   constructor(props){
         super(props);
         console.log(props);
-        this.state = {email:"" , password:"", loginTab:true};
+        this.state = {email:"" , password:"", loginTab:false};
+    }
+
+    onLoginSucess = (val) => {
+      var val = 13; // somehow calculate new value
+      console.log(this.props.onLoginSucess(12));
+
     }
 
     changeEmail = (e) => {
@@ -21,9 +27,8 @@ class Login extends Component {
     this.setState({password:newVal});
     }
 
-    changeLoginTab = (e) => {
-    let newVal = e.target.value;
-    this.setState({loginTab:false});
+    changeLoginTab = (val) => {
+    this.setState({loginTab:val});
     }
 
     formSubmit = () => {
@@ -35,27 +40,30 @@ class Login extends Component {
          data: payload
        }).then(function (response) {
           console.log(response);
+          if(response.data == "Success"){
+            console.log('kjjjjjjjj');
+            this.onLoginSucess;
+          }
         }).catch(function (error) {
-           console.log(error);   });
+           console.log(error);});
       }
 
-  render() {
+      render() {
       if(!this.props.LogIn){
         return (
           <div className="login-wrapper">
 
-            <div className="options"> <a className="btn" onClick={() => this.changeLoginTab()}> Login </a> <a className="btn"> SignUp </a> </div>
+            <div className="options"> <a className="btn" onClick={() => this.changeLoginTab(true)}> Login </a> <a className="btn" onClick={() => this.changeLoginTab(false)}> SignUp </a> </div>
 
-              <div className="Login">
-                <header className={loginTab? 'Login-header':'none'}>
+              <div className={this.state.loginTab? 'Login':'none'}>
+                <header className="Login-header">
                     Login
                 </header>
                 <div className="Login-input"> <input type="email" onChange={this.changeEmail} placeholder="Enter Email" value={this.state.email} /> </div>
                 <div className="Login-input"> <input type="password" onChange={this.changePassword} placeholder="Enter Password" value={this.state.password} /> </div>
                 <button className="btn btn-default" type="submit" onClick={() => this.formSubmit()} > Submit </button>
               </div>
-
-              <SignUp className={!loginTab? 'none':'block'} />
+              <SignUp loginTab={this.state.loginTab} />
 
           </div>
         );
