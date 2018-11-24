@@ -10,14 +10,22 @@ class App extends Component {
         this.state = {
         name: '',
         dept : "",
-        loggedIn:false
+        loggedIn:""
       }
+      if(localStorage.access_token == null || localStorage.access_token == undefined || !localStorage.access_token ){
+        this.state.loggedIn = false
+      }
+      else this.state.loggedIn = true;
     }
 
     onLoginSucess = (val) =>{
-       var newVal = someBusinessLogic(val);
-      console.log(newVal)
-      //this.setState({val: newVal});
+      let newVal = val;
+      this.setState({loggedIn: newVal});
+    }
+
+    onLogOut = (val) =>{
+      let newVal = val;
+      this.setState({loggedIn: newVal});
     }
 
     componentDidMount() {
@@ -29,11 +37,11 @@ class App extends Component {
     }
 
   render() {
-      const logIn = this.state.loggedIn;
+      let logIn = this.state.loggedIn;
       return (
         <div className="App">
-            <Feed LogIn={logIn}/>
-            <Login onLoginSucess={this.onLoginSucess} LogIn={logIn} />
+            <Feed onLogOut={this.onLogOut} LogIn={logIn}/>
+            <Login onLoginSucess={this.onLoginSucess}  LogIn={logIn} />
         </div>
       );
     }

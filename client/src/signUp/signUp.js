@@ -10,21 +10,26 @@ class SignUp extends Component {
         this.state = {name:"",email:"" , password:"",confirmPsd:"",error:""};
   }
 
+  onSignUpSuccess = (val) => {
+    var val = true; // somehow calculate new value;
+    this.props.onSignUpSuccess(val);
+  }
+
   changeName = (e) => {
   let newVal = e.target.value;
   this.setState({name:newVal});
-  if(newVal == ""){
-    this.setState({error:"Name is mandatory"});
-  }
-  }
+    if(newVal == ""){
+      this.setState({error:"Name is mandatory"});
+    }
+}
 
   changeEmail = (e) => {
   let newVal = e.target.value;
-  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   this.setState({email:newVal});
-  if(newVal == "" || ! regex.test(newVal.toLowerCase())){
+  if(newVal == "" || ! regexEmail.test(newVal.toLowerCase())){
     this.setState({error:"Enter a valid email"});
-  }
+    }
   }
 
   changePassword = (e) => {
@@ -47,18 +52,23 @@ class SignUp extends Component {
     if(this.state.name!=="" && this.state.email!=="" && this.state.password!=="" && this.state.confirmPsd!==""  ){
       if(this.state.password == this.state.confirmPsd){
         let payload = {name:this.state.name,email:this.state.email, password:this.state.password}
+        let that = this;
         axios({
            method: 'post',
            url: '/createUser',
            data: payload
          }).then(function (response) {
+
             if(response.data.Error){
-              this.setState({
+              that.setState({
                 error:"Invalid login credentials!"
               })
             }
             else{
-              
+              that.setState({
+                error:""
+              })
+              that.onSignUpSuccess(true);
             }
           }).catch(function (error) {
              console.log(error);   });

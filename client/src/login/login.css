@@ -1,16 +1,17 @@
 .Login{
   max-width: 500px;
-  margin:100px auto 0;
+  margin: 20px auto 0;
 }
 
 .Login-header{
   margin: 20px 0 50px;
 }
 
-.login-wrapper{
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
+.login-wrapper {
+    max-width: 500px;
+    margin: 77px auto 0;
+    padding: 20px;
+    border: 4px double #ccc;
 }
 .Login-input{
   margin-bottom: 10px;

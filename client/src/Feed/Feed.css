@@ -1,4 +1,4 @@
-.Feed{
+.Feed-wrapper{
   max-width: 800px;
   margin:0 auto;
 }
@@ -21,4 +21,8 @@
 .Feed-comment input{
   margin: 10px;
   max-width: 85%;
+}
+
+.logout-btn{
+  float:right;
 }
