@@ -7,9 +7,7 @@ import CreateFeed from './CreateFeed/CreateFeed';
 class Feed extends Component {
   constructor(props){
         super(props);
-         // let userDetails = JSON.parse(localStorage.userDetails);
-       console.log(localStorage.userDetails);
-        this.state = {feed :"",timeStamp:"",value:"",createFeed:false};
+        this.state = {feed :"",timeStamp:"",value:""};
         this.onChange = (e) => {
         let newVal = e.target.value;
         this.setState({value:newVal});
@@ -26,15 +24,17 @@ class Feed extends Component {
         this.props.onLogOut(val);
       }
 
-      createFeed =()=> {
-        this.setState({createFeed:true})
-      }
 
     componentDidMount() {
       axios.get(`/feed`)
         .then(res => {
           const response = res.data;
           this.setState({feed:response.feed,timeStamp:response.timeStamp})
+        })
+      axios.get(`/me`)
+        .then(res => {
+          const response = res.data;
+          this.setState({name:response.details.name,timeStamp:response.timeStamp})
         })
     }
 
@@ -43,8 +43,8 @@ class Feed extends Component {
       return (
         <div className="Feed">
         <header className="App-header clearfix">
-        <span className="User-name"> {this.state.name}  </span>
-        <button className="btn left btn-default" type="submit" onClick={() => this.createFeed()}> Create Feed </button>
+        <span className="User-name">Welcome, {this.state.name}  </span>
+        <CreateFeed />
         <button className="btn right btn-default" type="submit" onClick={() => this.logOut()}> Log out </button>
         <span className="User-name dept-name"> {this.state.project}  </span>
         </header>
@@ -58,11 +58,10 @@ class Feed extends Component {
             <div className="img-placeholder"> </div>
           </section>
 
-          <div className="Feed-comment"> <input type="text" placeholder="Enter Your Comment" value={this.state.value} onChange={this.onChange.bind(this)} />
+          <div className="Feed-comment">
+          <input type="text" placeholder="Enter Your Comment" value={this.state.value} onChange={this.onChange.bind(this)} />
           </div>
           </section>
-            <CreateFeed createFeed={this.state.createFeed} />
-
         </div>
       );
     }

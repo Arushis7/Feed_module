@@ -27,11 +27,6 @@
   float:right;
 }
 
-.User-name {
-    font-size: large;
-    display: inline-block;
-    max-width: 800px;
-    margin: 10px auto;
-    text-align: left;
-    float: left;
+.modal{
+background: rgba(0,0,0,0.5);
 }

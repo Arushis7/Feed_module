@@ -66,3 +66,30 @@ background:#185380;}
 .right{
   float:right;
 }
+.modal{
+  background: rgba(0,0,0,0.5);
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+.modal .modal-dialog{
+  max-width: 768px;
+  margin: 0 auto 0;
+  transform: translateY(-50%);
+  background: #fff;
+  top: 50%;
+  position: relative;
+  padding: 10px;
+}
+.modal .modal-dialog button[aria-label="Close"]
+{   position: absolute;
+    right: -3px;
+    top: -10px;}
+
+.feed-popup textarea{
+  width: 80%;
+  height: 100px;
+  padding: 10px;
+}

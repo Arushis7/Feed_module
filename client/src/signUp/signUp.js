@@ -21,7 +21,7 @@ class SignUp extends Component {
     if(newVal == ""){
       this.setState({error:"Name is mandatory"});
     }
-}
+  }
 
   changeEmail = (e) => {
   let newVal = e.target.value;

@@ -31,36 +31,4 @@ module.exports = {
            filename: 'index.html'
        })
    ]
-
-
- //  mode: 'development',
- //  entry: path.join(parentDir, 'index.js'),
- //  output: {
- //    path: path.join(__dirname, '/client/dist'),
- //    filename: 'vendor.js',
- //    publicPath: ASSET_PATH
- //  },
- //  module: {
- //    rules: [{
- //      test: /\.js$/,
- //      exclude: /node_modules/,
- //      loader: "babel-loader"
- //    }, {
- //      test: /\.css$/,
- //      loaders: ["style-loader", "css-loader"]
- //    }]
- //  },
- //
- //  devServer: {
- //   contentBase: path.join(__dirname, 'dist'),
- //   compress: true,
- //   port: 3000
- // },
- //
- //  plugins: [
- //    new HtmlWebpackPlugin({
- //      template: './index.html',
- //      filename: 'index.html'
- //    })
- //  ]
 };
